@@ -27,7 +27,7 @@ This project have 3 collection, products, videos and comments.
     timestamps: true
 }
  ```
-
+----
 ### Videos Collection
 
 ```
@@ -42,7 +42,7 @@ This project have 3 collection, products, videos and comments.
     }
 }
  ```
-
+----
 ### Comments Collection
 
 ```
@@ -55,7 +55,7 @@ This project have 3 collection, products, videos and comments.
     timestamps: true
 }
 ```
-
+----
 ## API Structure
 
 Endpoint ready to use
@@ -80,11 +80,13 @@ GET     /api/videos/:videoId/product
 GET     /api/videos/:videoId/comment
 DELETE  /api/comment/:productId
 ```
+----
 ## API Request Response
 # Products
 
 **POST /api/products/**
-----
+---
+
   Creates a new Product and returns the new object.
 * **URL Params**  
   None
@@ -200,7 +202,7 @@ DELETE  /api/comment/:productId
 ----
   # Videos & Comments
 **POST /api/videos/create**
-----
+
   Creates a new video and returns the new object.
 * **URL Params**  
   None
@@ -365,7 +367,7 @@ DELETE  /api/comment/:productId
   OR  
   * **Code:** 500  
   **Content:** `{ error: error.message }`
-
+----
 ## How to run in local
 
 1. Clone this repository
