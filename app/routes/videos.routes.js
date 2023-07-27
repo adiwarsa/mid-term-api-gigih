@@ -12,6 +12,6 @@ module.exports = app => {
     route.put("/:videoId", videos.update);
  
 
-    app.use("/videos", route);
+    app.use("/api/videos", route);
 
 }

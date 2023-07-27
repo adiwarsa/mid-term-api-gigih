@@ -9,6 +9,6 @@ module.exports = app => {
     route.delete("/:productId", products.delete);
  
 
-    app.use("/products", route);
+    app.use("/api/products", route);
 
 }
