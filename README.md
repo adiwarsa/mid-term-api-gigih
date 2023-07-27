@@ -197,9 +197,9 @@ DELETE  /api/comment/:productId
   OR  
   * **Code:** 500  
   **Content:** `{ error: error.message }`
-
+----
   # Videos & Comments
-  **POST /api/videos/create**
+**POST /api/videos/create**
 ----
   Creates a new video and returns the new object.
 * **URL Params**  
@@ -365,4 +365,48 @@ DELETE  /api/comment/:productId
   OR  
   * **Code:** 500  
   **Content:** `{ error: error.message }`
+
+## How to run in local
+
+1. Clone this repository
+
+```
+git clone https://github.com/adiwarsa/mid-term-api-gigih.git
+```
+
+2. Install dependencies
+
+```
+npm install
+```
+
+3. Copy .env.example to .env
+
+```
+copy .env.example .env
+```
+
+4. Open .env file and put your database connection url:
+
+```
+DB_URL = mongodb://127.0.0.1:27017/{yourdatabasename}
+```
+
+5. Run the server
+
+```
+npm start
+or
+nodemon
+```
+
+6. Server is running on port 8000
+
+```
+http://localhost:8000
+
+you can also change the port in server node.js line 23
+
+const PORT = process.env.PORT || {port};
+```
 
