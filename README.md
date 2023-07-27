@@ -62,29 +62,29 @@ Endpoint ready to use
 
 #Products
 ```
-POST    /api/products
-GET     /api/products
-GET     /api/products/:productId
-PUT     /api/products/:productId
-DELETE  /api/comment/:productId
+POST    /api/products                   -> Create a new products
+GET     /api/products                   -> Get all products
+GET     /api/products/:productId        -> Get only one product
+PUT     /api/products/:productId        -> Update product
+DELETE  /api/comment/:productId         -> Delete product
 ```
 
 #Videos & Comments
 ```
-POST    /api/videos/create
-POST    /api/videos/:videoId/comment
-GET     /api/videos
-GET     /api/videos/:videoId
-PUT     /api/videos/:videoId
-GET     /api/videos/:videoId/product
-GET     /api/videos/:videoId/comment
-DELETE  /api/comment/:productId
+POST    /api/videos/create              -> Create a new video
+POST    /api/videos/:videoId            -> Create a comment in video
+GET     /api/videos                     -> Get all videos
+GET     /api/videos/:videoId            -> Get only one video
+PUT     /api/videos/:videoId            -> Update video
+GET     /api/videos/:videoId/product    -> Get products in selected video
+GET     /api/videos/:videoId/comment    -> Get comments in selected video
+DELETE  /api/comment/:productId         -> Delete video
 ```
 ----
 ## API Request Response
 # Products
 
-**POST /api/products/**
+**POST /api/products/** -> Create a new products
 
   Creates a new Product and returns the new object.
 * **URL Params**  
@@ -93,7 +93,6 @@ DELETE  /api/comment/:productId
 ```
   {
     _id: ObjectId,
-    productId: Number,
     productName: String,
     productQty: Number,
     productPrice: String,
@@ -107,7 +106,7 @@ DELETE  /api/comment/:productId
 * **Code:** 200  
   **Content:**  `{ <product_object> }` 
 ----
-**GET /api/products**
+**GET /api/products** -> Get all products
 ----
   Returns all products in the system.
 * **URL Params**  
@@ -137,7 +136,7 @@ DELETE  /api/comment/:productId
 }
 ```
 ----
-**GET /api/products/:productId**
+**GET /api/products/:productId** -> Get only one product
 ----
   Returns the specified product.
 * **URL Params**  
@@ -157,7 +156,7 @@ DELETE  /api/comment/:productId
   **Content:** `{ error: error.message }`
 
 ----
-**PUT /api/products/:productId**
+**PUT /api/products/:productId** -> Update product
 ----
   Updates fields on the specified product and returns the updated object.
 * **URL Params**  
@@ -180,7 +179,7 @@ DELETE  /api/comment/:productId
   * **Code:** 500  
   **Content:** `{ error: error.message }`
 ----
-**DELETE /api/products/:productId**
+**DELETE /api/products/:productId** -> Delete product
 ----
   Deletes the specified product.
 * **URL Params**  
@@ -200,7 +199,7 @@ DELETE  /api/comment/:productId
   **Content:** `{ error: error.message }`
 ----
   # Videos & Comments
-**POST /api/videos/create**
+**POST /api/videos/create** -> Create a new video
 ----
   Creates a new video and returns the new object.
 * **URL Params**  
@@ -208,7 +207,6 @@ DELETE  /api/comment/:productId
 * **Data Params**  
 ```
   {
-    videoId: Number,
     title: String,
     urlThumbnail: String,
     productId: [Number],
@@ -220,7 +218,26 @@ DELETE  /api/comment/:productId
 * **Code:** 200  
   **Content:**  `{ <video_object> }` 
 ----
-**GET /api/videos**
+**POST /api/videos/:videoId** -> Create a comment in video
+----
+  Creates a new comment on a video and returns the new object.
+* **URL Params**  
+  None
+* **Data Params**  
+```
+  {
+    username: String,
+    comment: String,
+    videoId: Number,
+  }
+```
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  `{ <comment_object> }` 
+----
+**GET /api/videos** -> Get all videos
 ----
   Returns all videos in the system.
 * **URL Params**  
@@ -248,65 +265,7 @@ DELETE  /api/comment/:productId
 }
 ```
 ----
-**GET /api/videos/:videoId/product**
-----
-  Returns the specified product.
-* **URL Params**  
-  *Required:* `productId=[number]`
-* **Data Params**  
-  None
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:** 
-* **Code:** 200  
- **Content:**  `{ <product_object> }` 
-* **Error Response:**  
-  * **Code:** 404  
-  **Content:** `{ message: "Product not found" }`  
-  OR  
-  * **Code:** 505  
-  **Content:** `{ error: error.message }`
-----
-**POST /api/videos/:videoId**
-----
-  Creates a new comment on a video and returns the new object.
-* **URL Params**  
-  None
-* **Data Params**  
-```
-  {
-    commentId: Number,
-    username: String,
-    comment: String,
-    videoId: Number,
-  }
-```
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:**  
-* **Code:** 200  
-  **Content:**  `{ <comment_object> }` 
-----
-**GET /api/videos/:videoId/comment**
-----
-  Returns the specified comment.
-* **URL Params**  
-  *Required:* `commentId=[number]`
-* **Data Params**  
-  None
-* **Headers**  
-  Content-Type: application/json  
-* **Success Response:** 
-* **Code:** 200  
- **Content:**  `{ <comment_object> }` 
-* **Error Response:**  
-  * **Code:** 404  
-  **Content:** `{ message: "Comment not found" }`  
-  OR  
-  * **Code:** 505  
-  **Content:** `{ error: error.message }`
-----
-**GET /api/videos/:videosId**
+**GET /api/videos/:videosId** -> Get only one video
 ----
   Returns the specified video.
 * **URL Params**  
@@ -325,7 +284,7 @@ DELETE  /api/comment/:productId
   * **Code:** 505  
   **Content:** `{ error: error.message }`
 ----
-**PUT /api/videos/:videoId**
+**PUT /api/videos/:videoId** -> Update video
 ----
   Updates fields on the specified video and returns the updated object.
 * **URL Params**  
@@ -348,7 +307,47 @@ DELETE  /api/comment/:productId
   * **Code:** 500  
   **Content:** `{ error: error.message }`
 ----
-**DELETE /api/videos/:videoId**
+**GET /api/videos/:videoId/product** -> Get products in selected video
+----
+  Returns the specified product.
+* **URL Params**  
+  *Required:* `productId=[number]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+ **Content:**  `{ <product_object> }` 
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ message: "Product not found" }`  
+  OR  
+  * **Code:** 505  
+  **Content:** `{ error: error.message }`
+----
+
+**GET /api/videos/:videoId/comment** -> Get comments in selected video
+----
+  Returns the specified comment.
+* **URL Params**  
+  *Required:* `commentId=[number]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+ **Content:**  `{ <comment_object> }` 
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ message: "Comment not found" }`  
+  OR  
+  * **Code:** 505  
+  **Content:** `{ error: error.message }`
+----
+
+**DELETE /api/videos/:videoId** -> Delete video
 ----
   Deletes the specified video.
 * **URL Params**  
@@ -384,7 +383,7 @@ npm install
 3. Copy .env.example to .env
 
 ```
-copy .env.example .env
+copy .env.example to .env
 ```
 
 4. Open .env file and put your database connection url:
@@ -406,7 +405,7 @@ nodemon
 ```
 http://localhost:8000
 
-you can also change the port in server node.js line 23
+you can also change the port in server.js line 23
 
 const PORT = process.env.PORT || {port};
 ```
