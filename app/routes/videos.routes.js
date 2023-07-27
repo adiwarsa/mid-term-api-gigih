@@ -10,6 +10,7 @@ module.exports = app => {
     route.get("/:videoId/comment", comments.getCommentByVideoId);
     route.get("/:videoId", videos.show);
     route.put("/:videoId", videos.update);
+    route.delete("/:videoId", videos.delete);
  
 
     app.use("/api/videos", route);
