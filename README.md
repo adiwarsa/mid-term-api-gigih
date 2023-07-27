@@ -85,7 +85,6 @@ DELETE  /api/comment/:productId
 # Products
 
 **POST /api/products/**
----
 
   Creates a new Product and returns the new object.
 * **URL Params**  
@@ -107,7 +106,7 @@ DELETE  /api/comment/:productId
 * **Success Response:**  
 * **Code:** 200  
   **Content:**  `{ <product_object> }` 
-
+----
 **GET /api/products**
 ----
   Returns all products in the system.
@@ -137,7 +136,7 @@ DELETE  /api/comment/:productId
     ]
 }
 ```
-
+----
 **GET /api/products/:productId**
 ----
   Returns the specified product.
@@ -157,7 +156,7 @@ DELETE  /api/comment/:productId
   * **Code:** 505  
   **Content:** `{ error: error.message }`
 
-
+----
 **PUT /api/products/:productId**
 ----
   Updates fields on the specified product and returns the updated object.
@@ -180,7 +179,7 @@ DELETE  /api/comment/:productId
   OR  
   * **Code:** 500  
   **Content:** `{ error: error.message }`
-
+----
 **DELETE /api/products/:productId**
 ----
   Deletes the specified product.
@@ -202,7 +201,7 @@ DELETE  /api/comment/:productId
 ----
   # Videos & Comments
 **POST /api/videos/create**
-
+----
   Creates a new video and returns the new object.
 * **URL Params**  
   None
@@ -220,7 +219,7 @@ DELETE  /api/comment/:productId
 * **Success Response:**  
 * **Code:** 200  
   **Content:**  `{ <video_object> }` 
-
+----
 **GET /api/videos**
 ----
   Returns all videos in the system.
@@ -248,7 +247,7 @@ DELETE  /api/comment/:productId
     ]
 }
 ```
-
+----
 **GET /api/videos/:videoId/product**
 ----
   Returns the specified product.
@@ -267,7 +266,7 @@ DELETE  /api/comment/:productId
   OR  
   * **Code:** 505  
   **Content:** `{ error: error.message }`
-
+----
 **POST /api/videos/:videoId**
 ----
   Creates a new comment on a video and returns the new object.
@@ -287,7 +286,7 @@ DELETE  /api/comment/:productId
 * **Success Response:**  
 * **Code:** 200  
   **Content:**  `{ <comment_object> }` 
-
+----
 **GET /api/videos/:videoId/comment**
 ----
   Returns the specified comment.
@@ -306,7 +305,7 @@ DELETE  /api/comment/:productId
   OR  
   * **Code:** 505  
   **Content:** `{ error: error.message }`
-
+----
 **GET /api/videos/:videosId**
 ----
   Returns the specified video.
@@ -325,7 +324,7 @@ DELETE  /api/comment/:productId
   OR  
   * **Code:** 505  
   **Content:** `{ error: error.message }`
-
+----
 **PUT /api/videos/:videoId**
 ----
   Updates fields on the specified video and returns the updated object.
@@ -348,7 +347,7 @@ DELETE  /api/comment/:productId
   OR  
   * **Code:** 500  
   **Content:** `{ error: error.message }`
-
+----
 **DELETE /api/videos/:videoId**
 ----
   Deletes the specified video.
