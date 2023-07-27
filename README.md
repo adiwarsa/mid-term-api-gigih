@@ -43,7 +43,7 @@ This project have 3 collection, products, videos and comments.
 }
  ```
 
-### Comment Collection
+### Comments Collection
 
 ```
 {
@@ -80,6 +80,31 @@ GET     /api/videos/:videoId/product
 GET     /api/videos/:videoId/comment
 DELETE  /api/comment/:productId
 ```
+## API Request Response
+# Products
+
+**POST /api/products/**
+----
+  Creates a new Product and returns the new object.
+* **URL Params**  
+  None
+* **Data Params**  
+```
+  {
+    _id: ObjectId,
+    productId: Number,
+    productName: String,
+    productQty: Number,
+    productPrice: String,
+    productLink: String,
+    description: String, 
+}
+```
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  `{ <product_object> }` 
 
 **GET /api/products**
 ----
@@ -173,25 +198,171 @@ DELETE  /api/comment/:productId
   * **Code:** 500  
   **Content:** `{ error: error.message }`
 
-**POST /api/products/**
+  # Videos & Comments
+  **POST /api/videos/create**
 ----
-  Creates a new Order and returns the new object.
+  Creates a new video and returns the new object.
 * **URL Params**  
   None
 * **Data Params**  
 ```
   {
-    _id: ObjectId,
-    productId: Number,
-    productName: String,
-    productQty: Number,
-    productPrice: String,
-    productLink: String,
-    description: String, 
-}
+    videoId: Number,
+    title: String,
+    urlThumbnail: String,
+    productId: [Number],
+  }
 ```
 * **Headers**  
   Content-Type: application/json  
 * **Success Response:**  
 * **Code:** 200  
-  **Content:**  `{ <order_object> }` 
+  **Content:**  `{ <video_object> }` 
+
+**GET /api/videos**
+----
+  Returns all videos in the system.
+* **URL Params**  
+  None
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  "video": [
+        {
+            _id: ObjectId,
+            title: String,
+            urlThumbnail: String,
+            productId: [Number]
+            createdAt: timestamp,
+            updatedAt: timestamp,
+            videoId: [Number]
+        },
+    ]
+}
+```
+
+**GET /api/videos/:videoId/product**
+----
+  Returns the specified product.
+* **URL Params**  
+  *Required:* `productId=[number]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+ **Content:**  `{ <product_object> }` 
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ message: "Product not found" }`  
+  OR  
+  * **Code:** 505  
+  **Content:** `{ error: error.message }`
+
+**POST /api/videos/:videoId**
+----
+  Creates a new comment on a video and returns the new object.
+* **URL Params**  
+  None
+* **Data Params**  
+```
+  {
+    commentId: Number,
+    username: String,
+    comment: String,
+    videoId: Number,
+  }
+```
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  `{ <comment_object> }` 
+
+**GET /api/videos/:videoId/comment**
+----
+  Returns the specified comment.
+* **URL Params**  
+  *Required:* `commentId=[number]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+ **Content:**  `{ <comment_object> }` 
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ message: "Comment not found" }`  
+  OR  
+  * **Code:** 505  
+  **Content:** `{ error: error.message }`
+
+**GET /api/videos/:videosId**
+----
+  Returns the specified video.
+* **URL Params**  
+  *Required:* `videosId=[number]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+ **Content:**  `{ <video_object> }` 
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ message: "Video not found" }`  
+  OR  
+  * **Code:** 505  
+  **Content:** `{ error: error.message }`
+
+**PUT /api/videos/:videoId**
+----
+  Updates fields on the specified video and returns the updated object.
+* **URL Params**  
+  *Required:* `videoId=[number]`
+* **Data Params**  
+```
+  {
+  	videoId : Number
+  }
+```
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:** 
+* **Code:** 200  
+  **Content:**  `{ <video_object> }`  
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ error : "Video not found" }`  
+  OR  
+  * **Code:** 500  
+  **Content:** `{ error: error.message }`
+
+**DELETE /api/videos/:videoId**
+----
+  Deletes the specified video.
+* **URL Params**  
+  *Required:* `videoId=[number]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Success Response:**  
+  * **Code:** 200
+   **Content:** `{ message : "Video deleted successfully" }`  
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ error : "Video not found" }`  
+  OR  
+  * **Code:** 500  
+  **Content:** `{ error: error.message }`
+
